@@ -10,3 +10,4 @@ export const getTweets = async () => {
     throw new Error(error);
   }
 };
+//tests
