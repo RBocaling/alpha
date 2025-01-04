@@ -24,7 +24,7 @@ const Twitter = () => {
         console.error("Error fetching tweets:", error);
       }
     };
-
+    //
     fetchData();
   }, []);
   return (
