@@ -13,7 +13,7 @@ const BuyItOn = () => {
         className="relative max-w-6xl mx-auto flexColCenter gap-12 py-14 md:py-24"
       >
         <TitleAnimation firstText="REDIRECT" secondText="LAUNCH APP" />
-        <div className="text-red-500 text-500">waiting</div>
+        <div className="text-blue-200 text-2xl text-500">Coming Soon</div>
       </div>
       <img
         src={circuit_right}
