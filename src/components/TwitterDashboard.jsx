@@ -53,7 +53,9 @@ const TwitterDashboard = () => {
     <section className="w-full text-white relative z-[9999] mt-32">
       <div className="max-w-6xl mx-auto h-screen md:h-[400px] overflow-y-auto rounded-xl shadow-md md:p-5 bg-black/50 flex flex-col items-center justify-center">
         <div className="w-full flex items-center justify-between px-3 py-5 md:px-7 mb-4">
-          <h1 className="text-2xl font-medium p-2">Alpha Feed</h1>
+          <h1 className="text-2xl font-medium p-2">
+            Alpha/<span className="text-blue-500/50">{tab}</span>
+          </h1>
           <div className="flex items-center gap-4 md:gap-7">
             <button
               onClick={() => setTab("feed")}
