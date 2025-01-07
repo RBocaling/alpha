@@ -50,8 +50,8 @@ const TwitterDashboard = () => {
   }, [tab, tweets, listings]);
 
   return (
-    <section className="w-full text-white relative z-[9999] mt-32">
-      <div className="max-w-6xl mx-auto h-screen md:h-[400px] overflow-y-auto rounded-xl shadow-md md:p-5 bg-black/50 flex flex-col items-center justify-center">
+    <section className="w-full text-white relative z-[9999] mt-32 overflow-auto">
+      <div className="max-w-6xl mx-auto  rounded-xl shadow-md md:p-5 bg-black/50 flex flex-col items-center justify-center">
         <div className="w-full flex items-center justify-between px-3 py-5 md:px-7 mb-4">
           <h1 className="text-2xl font-medium p-2">
             Alpha/<span className="text-blue-500/50">{tab}</span>
@@ -81,7 +81,7 @@ const TwitterDashboard = () => {
             <p className="text-lg text-gray-300">Loading...</p>
           </div>
         ) : (
-          <ul className="flex flex-col gap-7">
+          <ul className="flex flex-col gap-7 h-screen md:h-[400px] overflow-y-auto pb-9">
             {twitter?.map((item, index) => (
               <li
                 key={index}
