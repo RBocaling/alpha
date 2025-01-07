@@ -81,29 +81,17 @@ const TwitterDashboard = () => {
             <p className="text-lg text-gray-300">Loading...</p>
           </div>
         ) : (
-          <Swiper
-            direction={"vertical"}
-            slidesPerView={"auto"}
-            freeMode={true}
-            scrollbar={true}
-            mousewheel={true}
-            modules={[FreeMode, Scrollbar, Mousewheel]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <ul className="flex flex-col gap-7">
-                {twitter?.map((item, index) => (
-                  <li
-                    key={index}
-                    className="font-light text-base tracking-wider flex items-start gap-3"
-                  >
-                    <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </SwiperSlide>
-          </Swiper>
+          <ul className="flex flex-col gap-7">
+            {twitter?.map((item, index) => (
+              <li
+                key={index}
+                className="font-light text-base tracking-wider flex items-start gap-3"
+              >
+                <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
+                {item}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </section>
