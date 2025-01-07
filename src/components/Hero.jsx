@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Hero = () => {
   return (
@@ -22,24 +23,8 @@ const Hero = () => {
             initial={{ x: -25 }}
             animate={{ x: -5 }}
             transition={{ duration: 1 }}
-            className="text-4xl md:text-6xl text-white font-semibold flexStart gap-4"
+            className="text-4xl md:text-6xl text-white font-semibold flex justify-center gap-4"
           >
-            <motion.span
-              initial={{ x: -25, opacity: 0 }}
-              animate={{ x: -5, opacity: 1 }}
-              transition={{ duration: 1, delay: 2.5 }}
-            >
-              <FaAsterisk size={55} className="text-blue-500" />
-            </motion.span>{" "}
-            Empowering Crypto
-          </motion.h1>
-          <motion.h1
-            initial={{ x: 25 }}
-            animate={{ x: 5 }}
-            transition={{ duration: 1 }}
-            className="text-5xl text-center md:text-6xl flexCenter flex-wrap gap-4 text-white font-semibold mt-7 md:translate-x-28"
-          >
-            Insights with
             <Typical
               steps={["Cutting-Edge AI", 1000]}
               loop={Infinity}
@@ -73,22 +58,36 @@ const Hero = () => {
 
         <motion.div
           initial={{ x: 0, opacity: 0 }}
+          animate={{ x: [-25, 0], opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="hidden  max-w-[220px] w-full  absolute top-[35%] left-14 md:flex flex-col items-end gap-5"
+        >
+          <a
+            href=""
+            className="text-2xl text-blue-500 tracking-wide font-medium flex items-center gap-2"
+          >
+            <FaXTwitter className="text-blue-300" />
+            Follow Twitter
+          </a>
+        </motion.div>
+        <motion.div
+          initial={{ x: 0, opacity: 0 }}
           animate={{ x: [25, 0], opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="hidden  max-w-[220px] w-full  absolute top-[35%] left-0 md:flex flex-col items-end gap-5"
+          className="hidden  max-w-[220px] w-full  absolute top-[35%] right-14 md:flex flex-col items-end gap-5"
         >
-          <a href="/" className="p-3 rounded-full bg-[rgba(70,71,72,0.5)]">
+          <a href="/" className="p-5 rounded-full bg-[rgba(70,71,72,0.5)]">
             <FaTwitter size={25} className="text-[#285ff7]" />
           </a>
-          <a href="/" className="p-3 rounded-full bg-[rgba(70,71,72,0.5)]">
+          <a href="/" className="p-5 rounded-full bg-[rgba(70,71,72,0.5)]">
             <FaTelegramPlane size={25} className="text-[#285ff7]" />
           </a>
-          <a href="/" className="p-3 rounded-full bg-[rgba(70,71,72,0.5)]">
+          <a href="/" className="p-5 rounded-full bg-[rgba(70,71,72,0.5)]">
             <FaInstagram size={25} className="text-[#285ff7]" />
           </a>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: [25, 0], opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
@@ -122,10 +121,10 @@ const Hero = () => {
               world.
             </li>
           </ul>
-        </motion.div>
+        </motion.div> */}
 
         {/* mobile introducing */}
-        <div className="md:hidden mt-20 w-full flexColCenter relative z-20">
+        {/* <div className="md:hidden mt-20 w-full flexColCenter relative z-20">
           <h1 className="text-2xl text-white font-bold mb-4 tracking- whitespace-nowrap">
             Why Choose <span className="text-blue-500 text-3xl">Alpha?</span>
           </h1>
@@ -183,7 +182,7 @@ const Hero = () => {
               <FaInstagram size={25} className="text-[#285ff7]" />
             </motion.a>
           </div>
-        </div>
+        </div> */}
       </div>
       <img
         src={circuit}

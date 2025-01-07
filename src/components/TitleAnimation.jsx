@@ -22,7 +22,7 @@ const TitleAnimation = ({ firstText, secondText }) => {
           initial={{ x: 0, opacity: 0 }}
           whileInView={{ x: [25, 0], opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="relative title-stroke-blue text-blue-500 text-4xl md:text-5xl font-bold ml-28 -mt-5 z-[99]"
+          className="relative title-stroke-blue text-blue-500 text-4xl md:text-5xl font-medium ml-28 -mt-5 z-[99]"
         >
           {secondText}
         </motion.h1>

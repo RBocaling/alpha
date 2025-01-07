@@ -5,86 +5,52 @@ import circuit_right from "../assets/svg/circuit_right.svg";
 
 import { motion } from "framer-motion";
 import TitleAnimation from "./TitleAnimation";
+import { roadmap } from "../constants";
 
 const About = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
   return (
     <section className="w-full relative ">
-      <div id="about" className=" max-w-7xl mx-auto py-20">
-        <TitleAnimation firstText="GET INFO" secondText=" ABOUT US" />
+      <div id="roadmap" className=" max-w-6xl mx-auto py-20">
+        <TitleAnimation firstText="STEPS" secondText="ROADMAP" />
 
-        <div className="flexColCenter gap-7 mt-12 px-5">
-          <motion.h1
-            initial={{ y: 0, opacity: 0 }}
-            whileInView={{ y: [-25, 0], opacity: 1 }}
-            transition={{ duration: 1 }}
-            className=" text-4xl md:text-5xl text-white font-bold"
-          >
-            Let's Talk
-          </motion.h1>
-          <div className="relative max-w-4xl w-full z-[99]">
-            <motion.p
-              initial={{ y: 0, opacity: 0 }}
-              whileInView={{ y: [-25, 0], opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="text-center text-lg text-white tracking-wider"
-            >
-              Welcome to Alpha, where innovation meets the future of finance and
-              technology. We specialize in delivering unparalleled, real-time
-              insights into the world of crypto and blockchain. Our mission is
-              to empower businesses, traders, and enthusiasts with cutting-edge
-              AI solutions that revolutionize the way financial decisions are
-              made.
-            </motion.p>
-            <div className="max-w-2xl mx-auto mt-9 flexCenter flex-wrap gap-5 px-7 md:px-0">
-              <motion.button
-                initial={{ x: 0, opacity: 0 }}
-                whileInView={{ x: [-25, 0], opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="text-lg text-white font-medium bg-blue-500 px-9 py-3 rounded-lg w-full md:w-1/2"
-              >
-                Buy Now
-              </motion.button>
-              <motion.button
-                initial={{ x: 0, opacity: 0 }}
-                whileInView={{ x: [25, 0], opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="text-lg text-white font-medium border border-blue-500 px-9 py-3 rounded-lg w-full md:w-1/2"
-              >
-                More Info
-              </motion.button>
-            </div>
+        <motion.div
+          className="space-y-7 mt-7"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {roadmap.map((item, index) => (
             <motion.div
-              initial={{ y: 0, scale: 1, opacity: 0 }}
-              whileInView={{ y: [-25, 0], scale: [0.8, 1], opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="relative  w-full mt-7 border border-blue-500 rounded-2xl"
+              key={index}
+              className="flex flex-col md:flex-row items-start md:items-center gap-6 bg-blue-500/10 p-6 rounded-lg shadow-lg"
+              variants={itemVariants}
             >
-              <img
-                src={about}
-                alt=""
-                className="relative w-full rounded-lg shaddow-xl shadow-[#1a212c] z-[99]"
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 2 }}
-                className="absolute top-1/2 -translate-y-1/2 -left-20 w-full h-[100%] rounded-full border-[#1fb4ff] border-l border-dashed z-[98]"
-              >
-                {""}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 2 }}
-                className="absolute top-1/2 -translate-y-1/2 -right-20 w-full h-[100%] rounded-full border-[#ff231f] border-r border-dashed z-[98]"
-              >
-                {""}
-              </motion.div>
-              <div className="about_img_box">{""}</div>
+              <div className="w-12 h-12 flex-shrink-0 bg-blue-500 rounded-full flex items-center justify-center text-lg font-bold">
+                {index + 1}
+              </div>
+              <div>
+                <h3 className="text-2xl text-white font-semibold mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-blue-300">{item.description}</p>
+              </div>
             </motion.div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
       <img
         src={circuit}

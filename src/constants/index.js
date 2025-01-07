@@ -9,8 +9,8 @@ import woofi from "../assets/img/social/Woofi.png";
 
 export const navlinks = [
   { name: "Home", url: "#" },
-  { name: "About", url: "#about" },
-  { name: "Buy It On", url: "#toknomics" },
+  { name: "Roadmap", url: "#roadmap" },
+  { name: "Launch App", url: "#launch-app" },
   { name: "Contact", url: "#contact" },
 ];
 
@@ -75,5 +75,33 @@ export const pages = [
   {
     page: 6,
     url: "#contact",
+  },
+];
+
+export const roadmap = [
+  {
+    title: "About",
+    description:
+      "Alpha is a cutting-edge analytics platform powered by artificial intelligence, designed to deliver unparalleled insights.",
+  },
+  {
+    title: "Attention Eco",
+    description:
+      "Stay ahead of the curve with Alpha's in-depth analysis, featuring insights on top-performing projects, emerging trends, and overall community sentiment.",
+  },
+  {
+    title: "Innovation",
+    description:
+      "With continuous integrations and planned advancements, Alpha aspires to be the ultimate leader in its field—the 'Alpha of the alphas.'",
+  },
+  {
+    title: "Alpha Framework",
+    description:
+      "A network of agents delivering unmatched value in the blockchain space. Our mission is to provide top-tier on-chain research entirely free, supporting the ecosystem from the ground up.",
+  },
+  {
+    title: "Alpha.fun",
+    description:
+      "An all-in-one platform to track, trade, and launch your own no-code agents effortlessly.",
   },
 ];

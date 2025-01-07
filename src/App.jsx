@@ -7,7 +7,7 @@ import About from "./components/About";
 import Banner from "./components/Banner";
 import Contact from "./components/Contact";
 import ScrollButton from "./components/ScrollButton";
-import Twitter from "./components/Twitter";
+import TwitterDashboard from "./components/TwitterDashboard";
 
 const App = () => {
   console.log(window.scrollY);
@@ -15,11 +15,12 @@ const App = () => {
     <main className="relative overflow-x-hidden">
       <Header />
       <Hero />
-      <Tagline />
+      <TwitterDashboard />
+      {/* <Tagline /> */}
       <About />
       <BuyItOn />
-      <Banner />
-      <Twitter />
+      {/* <Banner /> */}
+      {/* <Twitter /> */}
       <Contact />
       <ScrollButton />
 

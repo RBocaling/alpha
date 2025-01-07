@@ -1,0 +1,111 @@
+import React, { useEffect, useState } from "react";
+import { getListings } from "../services/getAllTweets";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/scrollbar";
+
+import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
+import { RiRobot3Line } from "react-icons/ri";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../services/config";
+
+const TwitterDashboard = () => {
+  const [tweets, setTweets] = useState([]);
+  const [listings, setListings] = useState([]);
+  const [tab, setTab] = useState("feed");
+  const [twitter, setTwitter] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const tweetCollection = collection(db, "tweets");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getDocs(tweetCollection);
+        const listingData = await getListings();
+        const feedData = data.docs.map((doc) => ({
+          ...doc.data(),
+          tweet: doc?.data().tweet,
+          date: doc?.data().date,
+        }));
+        setListings(listingData?.map((item) => item.full_text));
+        setTweets(feedData?.map(({ tweet }) => tweet));
+      } catch (error) {
+        console.error("Error fetching tweets:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (tab === "feed") {
+      setTwitter(tweets);
+    } else if (tab === "listing") {
+      setTwitter(listings);
+    }
+  }, [tab, tweets, listings]);
+
+  return (
+    <section className="w-full text-white relative z-[9999] mt-32">
+      <div className="max-w-6xl mx-auto h-screen md:h-[400px] overflow-y-auto rounded-xl shadow-md md:p-5 bg-black/50 flex flex-col items-center justify-center">
+        <div className="w-full flex items-center justify-between px-3 py-5 md:px-7 mb-4">
+          <h1 className="text-2xl font-medium p-2">Alpha Feed</h1>
+          <div className="flex items-center gap-4 md:gap-7">
+            <button
+              onClick={() => setTab("feed")}
+              className={`${
+                tab === "feed" ? "border-blue-500" : "border-transparent"
+              } border-b-2 p-2 transition-all duration-150 text-xl`}
+            >
+              Feed
+            </button>
+            <button
+              onClick={() => setTab("listing")}
+              className={`${
+                tab === "listing" ? "border-blue-500" : "border-transparent"
+              } border-b-2 p-2 transition-all duration-150 text-xl`}
+            >
+              Listing
+            </button>
+          </div>
+        </div>
+
+        {isLoading ? (
+          <div className="flex justify-center items-center h-full">
+            <p className="text-lg text-gray-300">Loading...</p>
+          </div>
+        ) : (
+          <Swiper
+            direction={"vertical"}
+            slidesPerView={"auto"}
+            freeMode={true}
+            scrollbar={true}
+            mousewheel={true}
+            modules={[FreeMode, Scrollbar, Mousewheel]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <ul className="flex flex-col gap-7">
+                {twitter?.map((item, index) => (
+                  <li
+                    key={index}
+                    className="font-light text-base tracking-wider flex items-start gap-3"
+                  >
+                    <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </SwiperSlide>
+          </Swiper>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default TwitterDashboard;

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getTweets = async () => {
+export const getListings = async () => {
   try {
     const response = await axios.get(
-      "https://ai-agent-tawny.vercel.app/get-mytweets"
+      "https://ai-agent-tawny.vercel.app/get-listings"
     );
     return response.data;
   } catch (error) {
