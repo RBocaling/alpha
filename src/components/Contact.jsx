@@ -64,13 +64,13 @@ const Contact = () => {
               initial={{ x: 0, opacity: 0 }}
               whileInView={{ x: [-25, 0], opacity: [0, 1] }}
               transition={{ duration: 1, delay: 1.5 }}
-              href="/"
+              href="https://x.com/alphaaifun"
               className="flexCenter gap-3 "
             >
               <FaTwitter size={30} className="text-[#285ff7]" />
               <p className="text-xl text-white tracking-wide">Twitter</p>
             </motion.a>
-            <motion.a
+            {/* <motion.a
               initial={{ x: 0, opacity: 0 }}
               whileInView={{ x: [25, 0], opacity: [0, 1] }}
               transition={{ duration: 1, delay: 1.5 }}
@@ -79,7 +79,7 @@ const Contact = () => {
             >
               <FaTelegramPlane size={30} className="text-[#285ff7]" />
               <p className="text-xl text-white tracking-wide">Telegram</p>
-            </motion.a>
+            </motion.a> */}
           </div>
         </div>
       </div>

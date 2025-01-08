@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import { GrLanguage } from "react-icons/gr";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  console.log("d", isLogin);
+
   return (
     <header className=" w-full overflow-x-hidden ">
       <motion.nav
@@ -31,7 +34,10 @@ const Header = () => {
             <GrLanguage size={22} className="text-blue-500" />
             <p className="text-white text-sm">EN</p>
           </div>
-          <button className="text-base text-blue-500 font-medium tracking-wider px-7 py-3 rounded-full border border-blue-500 shadow-lg shadow-[rgba(150,194,255,0.2)]">
+          <button
+            onClick={() => setIsLogin(true)}
+            className="text-base text-blue-500 font-medium tracking-wider px-7 py-3 rounded-full border border-blue-500 shadow-lg shadow-[rgba(150,194,255,0.2)]"
+          >
             Login
           </button>
         </div>
@@ -82,6 +88,22 @@ const Header = () => {
             </button>
           </div>
         </nav>
+      )}
+
+      {isLogin && (
+        <div
+          onClick={() => setIsLogin(false)}
+          className="fixed top-0 left-0 z-[999999] h-screen w-full bg-black/40 flex items-center justify-center "
+        >
+          <div className="relative max-w-xl p-10 w-full bg-white rounded-2xl shadow-md">
+            <h1 className="text-4xl font-medium text-center">
+              We are still in <span className="text-blue-500"> Beta</span>
+            </h1>
+            <button className="text-5xl absolute top-4 right-4 text-red-500">
+              &times;
+            </button>
+          </div>
+        </div>
       )}
     </header>
   );
