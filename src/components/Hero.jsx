@@ -70,7 +70,7 @@ const Hero = () => {
             Follow Twitter
           </a>
         </motion.div>
-        <motion.div
+        {/* <motion.div
           initial={{ x: 0, opacity: 0 }}
           animate={{ x: [25, 0], opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
@@ -85,7 +85,7 @@ const Hero = () => {
           <a href="/" className="p-5 rounded-full bg-[rgba(70,71,72,0.5)]">
             <FaInstagram size={25} className="text-[#285ff7]" />
           </a>
-        </motion.div>
+        </motion.div> */}
 
         {/* <motion.div
           initial={{ y: 0, opacity: 0 }}
