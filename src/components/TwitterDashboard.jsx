@@ -24,13 +24,13 @@ const TwitterDashboard = () => {
       setIsLoading(true);
       try {
         const data = await getDocs(tweetCollection);
-        const listingData = await getListings();
+        // const listingData = await getListings();
         const feedData = data.docs.map((doc) => ({
           ...doc.data(),
           tweet: doc?.data().tweet,
           date: doc?.data().date,
         }));
-        setListings(listingData?.map((item) => item.full_text));
+        // setListings(listingData?.map((item) => item.full_text));
         setTweets(feedData?.map(({ tweet }) => tweet));
       } catch (error) {
         console.error("Error fetching tweets:", error);
@@ -41,13 +41,15 @@ const TwitterDashboard = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (tab === "feed") {
-      setTwitter(tweets);
-    } else if (tab === "listing") {
-      setTwitter(listings);
-    }
-  }, [tab, tweets, listings]);
+  console.log("test", tweets);
+
+  //   useEffect(() => {
+  //     if (tab === "feed") {
+  //       setTwitter(tweets);
+  //     } else if (tab === "listing") {
+  //       setTwitter(listings);
+  //     }
+  //   }, [tab, tweets, listings]);
 
   //   console.log(data);
 
@@ -75,6 +77,14 @@ const TwitterDashboard = () => {
             >
               Listing
             </button>
+            <button
+              onClick={() => setTab("quant")}
+              className={`${
+                tab === "quant" ? "border-blue-500" : "border-transparent"
+              } border-b-2 p-2 transition-all duration-150 text-xl`}
+            >
+              Quant
+            </button>
           </div>
         </div>
 
@@ -85,7 +95,7 @@ const TwitterDashboard = () => {
         ) : (
           <div className="flex flex-col gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9 flex items-center justify-center">
             {tab === "feed" &&
-              twitter?.map((item, index) => (
+              tweets?.map((item, index) => (
                 <li
                   key={index}
                   className="font-light text-base tracking-wider flex items-start gap-3"
@@ -95,7 +105,7 @@ const TwitterDashboard = () => {
                 </li>
               ))}
             <h1 className="text-3xl text-blue-500">
-              {tab === "listing" && "Coming Soon.."}
+              {(tab === "listing" || tab === "quant") && "Coming Soon.."}
             </h1>
           </div>
         )}
