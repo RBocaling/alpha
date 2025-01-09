@@ -101,18 +101,19 @@ const TwitterDashboard = () => {
             <p className="text-lg text-gray-300">Loading...</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9 flex items-center justify-center">
-            {twitter?.map((item, index) => (
-              <li
-                key={index}
-                className="font-light text-base tracking-wider flex items-start gap-3"
-              >
-                <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
-                {item}
-              </li>
-            ))}
+          <div className="flex flex-col items-start gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9  justify-center">
+            {(tab === "feed" || tab === "listing") &&
+              twitter?.map((item, index) => (
+                <li
+                  key={index}
+                  className="font-light text-base tracking-wider flex items-start gap-3"
+                >
+                  <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
+                  {item}
+                </li>
+              ))}
             <h1 className="text-3xl text-blue-500">
-              {tab === "quant" && "Coming Soon.."}
+              {tab == "quant" && "Coming Soon.."}
             </h1>
           </div>
         )}
