@@ -38,7 +38,11 @@ const TwitterDashboard = () => {
           date: doc?.data().full_text,
         }));
 
-        setListings(listingsdata?.map(({ full_text }) => full_text));
+        setListings(
+          listingsdata?.map(({ full_text }) =>
+            full_text.replace(/\s?https?:\/\/\S+$/, "")
+          )
+        );
         setTweets(feedData?.map(({ tweet }) => tweet));
       } catch (error) {
         console.error("Error fetching tweets:", error);
