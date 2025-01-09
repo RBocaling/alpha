@@ -102,17 +102,17 @@ const TwitterDashboard = () => {
 
         {isLoading ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-lg text-gray-300">Loading...</p>
+            <p className="text-lg text-gray-300 py-7">Loading...</p>
           </div>
         ) : (
-          <div className="flex flex-col items-start gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9  justify-center">
+          <div className="flex flex-col  gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9  pt-12 ">
             {(tab === "feed" || tab === "listing") &&
               twitter?.map((item, index) => (
                 <li
                   key={index}
-                  className="font-light text-base tracking-wider flex items-start gap-3"
+                  className="font-light text-base tracking-wider flex items-start justify-start md:gap-3  w-full"
                 >
-                  <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
+                  <RiRobot3Line className="w-10  text-sky-500 m-2" />
                   {item}
                 </li>
               ))}
