@@ -18,19 +18,27 @@ const TwitterDashboard = () => {
   const [twitter, setTwitter] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const tweetCollection = collection(db, "tweets");
+  const listingCollection = collection(db, "listings");
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const data = await getDocs(tweetCollection);
-        // const listingData = await getListings();
-        const feedData = data.docs.map((doc) => ({
+        const tweetdata = await getDocs(tweetCollection);
+        const listingdata = await getDocs(listingCollection);
+
+        const feedData = tweetdata.docs.map((doc) => ({
           ...doc.data(),
           tweet: doc?.data().tweet,
           date: doc?.data().date,
         }));
-        // setListings(listingData?.map((item) => item.full_text));
+        const listingsdata = listingdata.docs.map((doc) => ({
+          ...doc.data(),
+          tweet: doc?.data().created_at,
+          date: doc?.data().full_text,
+        }));
+
+        setListings(listingsdata?.map(({ full_text }) => full_text));
         setTweets(feedData?.map(({ tweet }) => tweet));
       } catch (error) {
         console.error("Error fetching tweets:", error);
@@ -41,15 +49,15 @@ const TwitterDashboard = () => {
     fetchData();
   }, []);
 
-  console.log("test", tweets);
+  console.log("test", listings);
 
-  //   useEffect(() => {
-  //     if (tab === "feed") {
-  //       setTwitter(tweets);
-  //     } else if (tab === "listing") {
-  //       setTwitter(listings);
-  //     }
-  //   }, [tab, tweets, listings]);
+  useEffect(() => {
+    if (tab === "feed") {
+      setTwitter(tweets);
+    } else if (tab === "listing") {
+      setTwitter(listings);
+    }
+  }, [tab, tweets, listings]);
 
   //   console.log(data);
 
@@ -94,18 +102,17 @@ const TwitterDashboard = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-7 h-[70vh] md:h-[400px] overflow-y-auto pb-9 flex items-center justify-center">
-            {tab === "feed" &&
-              tweets?.map((item, index) => (
-                <li
-                  key={index}
-                  className="font-light text-base tracking-wider flex items-start gap-3"
-                >
-                  <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
-                  {item}
-                </li>
-              ))}
+            {twitter?.map((item, index) => (
+              <li
+                key={index}
+                className="font-light text-base tracking-wider flex items-start gap-3"
+              >
+                <RiRobot3Line className="w-32 md:w-10 text-sky-500 m-2" />
+                {item}
+              </li>
+            ))}
             <h1 className="text-3xl text-blue-500">
-              {(tab === "listing" || tab === "quant") && "Coming Soon.."}
+              {tab === "quant" && "Coming Soon.."}
             </h1>
           </div>
         )}
